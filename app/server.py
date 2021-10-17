@@ -9,7 +9,7 @@ from app.session import SessionStorage
 from route.auth import router as auth_router
 from tortoise.contrib.fastapi import register_tortoise
 
-from route.project import router as project_router
+#from route.project import router as project_router
 
 server = FastAPI(
     title="Spacebook Backend",
@@ -22,7 +22,7 @@ server.state_limiter = global_limiter
 server.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 server.include_router(auth_router)
-server.include_router(project_router)
+#server.include_router(project_router)
 server.session_storage = SessionStorage(secret="dbwd2d92bedad2hadb000883n2d9a2")
 
 
