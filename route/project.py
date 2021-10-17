@@ -24,7 +24,7 @@ class Project:
         )
         return {"data": {"name": data.name, "description": data.description}}
 
-    router.get("/project/{project_id}")
+    #router.get("/project/{project_id}")
 
     @router.get("/project/{project_id}")
     async def get_project(self, project_id: str):
