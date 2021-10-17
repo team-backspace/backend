@@ -1,0 +1,6 @@
+mode:
+  development:
+    host: 0.0.0.0
+    port: 80
+    google_application_id: 195708547654-i8msn7pg2cg1p9gapcetev8eie5t9p51.apps.googleusercontent.com
+    google_application_secret: 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
