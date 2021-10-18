@@ -19,7 +19,7 @@ class SessionStorage:
             self.jwt_secret,
             algorithm="HS256",
         )
-        string_key = encode.decode("utf-8")
+        string_key = encode
         self.sessions[string_key] = data
         return string_key
 

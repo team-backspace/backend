@@ -1,4 +1,5 @@
 from fastapi import FastAPI, Request
+from fastapi.middleware.cors import CORSMiddleware
 
 from slowapi import _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
@@ -17,6 +18,14 @@ server = FastAPI(
     version="0.1",
     docs_url="/development-docs",
     redoc_url="/development-redoc",
+)
+server.add_middleware(
+    CORSMiddleware,
+    allow_origins = ["*"],
+    allow_origin_regex = "http://localhost:3000/login",
+    allow_methods = ["*"],
+    allow_headers = ["*"]
+
 )
 server.state_limiter = global_limiter
 server.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
