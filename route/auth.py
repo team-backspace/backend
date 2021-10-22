@@ -8,6 +8,7 @@ from app.ratelimit import global_limiter
 from app.decorator import auth_required
 from utils.etc import create_url
 from model import LoginUser, ProfileUser
+from starlette.responses import RedirectResponse
 
 router = InferringRouter()
 
@@ -60,7 +61,7 @@ class Auth:
                 data={"email": user_data["email"], "id": user_data["id"]},
                 expired_at=None,
             )
-            return {"access_token": key}
+            return RedirectResponse(url=f'http://localhost:8000/callback?type=login&token={key}')
         elif action_type == "register":
             try:
                 token = await self.get_token_google(
@@ -83,7 +84,7 @@ class Auth:
                 data={"email": user_data["email"], "id": user_data["id"]},
                 expired_at=None,
             )
-            return {"access_token": key}
+            return RedirectResponse(url=f'http://localhost:8000/callback?type=register&token={key}')
 
     @router.patch("/profile", tags=["user"])
     @global_limiter.limit("100/second")
